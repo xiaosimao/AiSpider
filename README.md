@@ -5,6 +5,9 @@
  
 * 该框架部分设计思路继承自**SCRAPY**.
 
+* 案例脚本在framework_test文件夹中.
+
+* 在此感谢姜某坤, 许某杨 不打扰之恩, 哈哈.
 
 ## 一　运行图
 ![运行图](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png   "运行图")
