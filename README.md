@@ -68,9 +68,11 @@
 包括以下参数:
 
 - 爬虫名称
+
 ` spider_name = 'frame_work_test' ` 
 - 日志所在的文件夹名, 可自定义
-`log_folder_name = '%s_logs' % spider_name`  
+
+`log_folder_name = '%s_logs' % spider_name`, 
 `delete_existed_logs = True`  # 是否删除已有日志
 
 - 请求参数设置
