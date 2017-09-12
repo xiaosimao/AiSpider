@@ -6,7 +6,7 @@
 * 该框架部分设计思路继承自**SCRAPY**.
 
 ## 一　运行图
-![运行图](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png  "运行图")
+![运行图](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png   "运行图")
 
 
 - 主程序中首先**构造特定格式的带着url**放入**工作队列**,作为**root_url**, 特定格式如下:
