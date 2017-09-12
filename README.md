@@ -91,7 +91,6 @@
 `diy_header = None `     
 
 - 定义状态码,不在其中的均视为请求错误或异常    
-
 `status_code = [200, 304, 404]`    
 
 - 保存设置    
@@ -104,93 +103,84 @@
 
 其中定义了一个pipeline 单例对象, 默认的数据都是保存到MONGODB中, host, port, database_name都可以在配置文件中进行配置. collection_name为了使得程序更加灵活,所以要在爬虫程序中自己定义.
 
-- 存数据的时候定义了两种模式:
-[1] 有 _id 
-默认是这种模式,根据_id来进行存数据,使用update方法.
-[2] 无 _id
-直接insert插入数据
+- 存数据的时候定义了两种模式:    
+[1] 有 _id     
+默认是这种模式,根据_id来进行存数据,使用update方法.    
+[2] 无 _id.    
+直接insert插入数据.    
 
-- 调用:
-`pipeline.process_item(item, collection_name, user_id=True)`
-item 需要保存的数据,字典格式.
-当use_id为真的时候,需要在其中定义_id键, 否则会报错,默认为True.
-其中,collection_name 集合名称.
+- 调用:.    
+`pipeline.process_item(item, collection_name, user_id=True)`.    
+item 需要保存的数据,字典格式..    
+当use_id为真的时候,需要在其中定义_id键, 否则会报错,默认为True..    
+其中,collection_name 集合名称..    
 
-- 当用户想保存数据到MONGODB数据库中但是又不想使用框架提供的 process_item函数的时候,也可以调用pipeline.db[mongodb客户端对象]自己写保存的方法.
+- 当用户想保存数据到MONGODB数据库中但是又不想使用框架提供的 process_item函数的时候,也可以调用pipeline.db[mongodb客户端对象]自己写保存的方法..    
 
 ### (3) html_parser
-其中定义了一个parser单例对象, 默认的有3种处理数据的方式.
+其中定义了一个parser单例对象, 默认的有3种处理数据的方式..    
 
-* [1] get_data_by_xpath 
-调用:
-`get_data_by_xpath(html_page_source,urls_xpath))`
-html_page_source 请求返回的源代码
-urls_xpath 爬虫中定义的xpath
+* [1] get_data_by_xpath      
+调用:     
+`get_data_by_xpath(html_page_source,urls_xpath))`     
+html_page_source 请求返回的源代码     
+urls_xpath 爬虫中定义的xpath     
 
-* [2] get_data_by_re
-调用: 
-`get_data_by_re(html_page_source,pattern))`
-html_page_source 请求返回的源代码
-pattern 爬虫中定义的pattern
+* [2] get_data_by_re     
+调用:      
+`get_data_by_re(html_page_source,pattern))`     
+html_page_source 请求返回的源代码     
+pattern 爬虫中定义的pattern     
 
-* [3] get_data_by_json
-调用:
-`get_data_by_json(html_page_source)`
-html_page_source 请求返回的源代码
+* [3] get_data_by_json     
+调用:     
+`get_data_by_json(html_page_source)`     
+html_page_source 请求返回的源代码     
 
 ### (4) log_format
-其中定义了一个logger单例对象
+其中定义了一个logger单例对象     
 
-* 调用:
-`spider_log(log_name=spider_name, file_folder=log_folder_name, level=logging.INFO,delete_existed_log=delete_existed_logs)`
-log_name  日志名, 取配置中的 spider_name
-file_folder  文件夹名, 取配置中的 log_folder_name
-delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 delete_existed_logs
+* 调用:     
+`spider_log(log_name=spider_name, file_folder=log_folder_name, level=logging.INFO,delete_existed_log=delete_existed_logs)`     
+log_name  日志名, 取配置中的 spider_name     
+file_folder  文件夹名, 取配置中的 log_folder_name     
+delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 delete_existed_logs     
 
 ### (5) page_downloader
-其中定义了一个aispider单例对象, 采用布隆过滤来进行过滤, 请求采用requests.get方法.
+其中定义了一个aispider单例对象, 采用布隆过滤来进行过滤, 请求采用requests.get方法.     
 
-* 调用:
-`request(url, dont_filter=False)`
+* 调用:     
+`request(url, dont_filter=False)`     
 
-* 其中包括以下字段:
-sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header
+* 其中包括以下字段:     
+sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header     
 
 
-**[1] url** 
-
+**[1] url**      
 请求网址,会对网址的有效性进行检测,从队列数据中获取
 
-**[2] dont_filter** 
-
+**[2] dont_filter**      
 不过滤  默认为False 及默认的为过滤掉,从队列数据中获取
 
-**[3] sleep_time** 
-
+**[3] sleep_time**      
 请求休息时间, 当队列数据中未定义的时候从配置文件中获取
 
-**[4] timeout** 
-
+**[4] timeout**      
 超时时长, 当队列数据中未定义的时候从配置文件中获取
 
-**[5] retry_times** 
-
+**[5] retry_times**      
 请求失败重试次数, 当队列数据中未定义的时候从配置文件中获取
 
-**[6] use_proxy** 
-
+**[6] use_proxy**      
 是否使用代理, 当队列数据中未定义的时候从配置文件中获取
-
-**[7] ua_type** 
-
+     
+**[7] ua_type**      
 请求头种类, 当队列数据中未定义的时候从配置文件中获取
 
-**[8] diy_header** 
-
+**[8] diy_header**      
 自定义请求头, 当队列数据中未定义的时候从配置文件中获取
 
-**[9] ip** 
-
+**[9] ip**      
 代理IP, 当队列数据中未定义的时候从配置文件中获取
 
 
@@ -199,18 +189,16 @@ sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_pr
 ` 请求内容, 请求网址`
 
 ### (6)  threads_use_tag
-* 其中定义了2个队列: **work_queue** 和**save_queue**, 有两种格式, **先进先出(FIFO)** 和 **先进后出(LIFO)**, 需要在配置文件中指明.
+* 其中定义了2个队列: **work_queue** 和**save_queue**, 有两种格式, **先进先出(FIFO)** 和 **先进后出(LIFO)**, 需要在配置文件中指明.      
 
- * 在本模块中,将请求函数返回的网址及内容分别放入原来取出来的队列中, 键分别为**content** ,**url **. 所以在主程序中 **follow_func** or **save_func**的参数 **只有一个**,推荐写为**response**. 取数据的时候, 采用`response.get()`的方式,如获取请求内容则可以写成`response.get(‘content’)`
+* 在本模块中,将请求函数返回的网址及内容分别放入原来取出来的队列中, 键分别为**content** ,**url **. 所以在主程序中 **follow_func** or **save_func**的参数 **只有一个**,推荐写为**response**. 取数据的时候, 采用`response.get()`的方式,如获取请求内容则可以写成`response.get(‘content’)`      
  
-**work_queue**  
-
+**work_queue**      
 工作队列, 所有需要处理的请求都要在主程序中构造好数据然后放入其中.当定义了save_func的时候, 请求得到的内容与请求网址将被放入数据保存队列中;
 当定义了follow_func的时候,将直接执行该函数. 
 
-**save_queue**  
-
- 数据保存队列,在save_func中进行数据的获取与保存.
+**save_queue**      
+数据保存队列,在save_func中进行数据的获取与保存.
  
 
 ##    TODOLIST
