@@ -28,11 +28,11 @@
 
 **[args]** 
 
- 字典格式  键:url为必须 ,  diy_header为用户自定义的header, 一般需要使用特殊header时,可以使用; 还可以定义其他的相关请求参数.如下: sleep_time, time_out, retry_times, use_proxy, ua_type，ip
+ 字典格式  键:url为必须 ,  diy_header为用户自定义的header, 一般需要使用特殊header时,可以使用; 还可以定义其他的相关请求参数.如下: sleep_time, time_out, retry_times, use_proxy, ua_type，ip(下面有详细解释)
 
 **[work_func]** 
 
- 请求函数, 必须, 一般就写成[self.downloader.request], 这是框架内默认的请求函数;  也可以自定义函数,但是自定义的函数必须返回请求内容 及url这两个字段内容.
+ 请求函数, 必须, 一般就写成[downloader.request], 这是框架内默认的请求函数;  也可以自定义函数,但是自定义的函数必须返回请求内容 及url这两个字段内容.
 
 **[follow_func]** 
 
@@ -75,13 +75,20 @@
 
 - 请求参数设置
 `thread_num = 10`  # 线程数, 保存线程为工作线程的两倍
+
 `sleep_time = 0.2 `# 请求休息时间
-`retry_times = 10  `# 最大重试次数
-`timeout = 5  `# 请求最大等待时长
+
+`retry_times = 10 ` # 最大重试次数
+
+`timeout = 5 ` # 请求最大等待时长
+
 - 当use_proxy为True时，必须在请求的args中或者在配置文件中定义ip, eg: ip="120.52.72.58:80", 否则程序将报错
 `use_proxy = False`
+
 `ip=None`
+
 `ua_type = 'pc' ` # 浏览器头类型, 手机为mobile
+
 - 队列顺序
 ` FIFO=0 ` # FIFO先进先出, LIFO 后进先出
 
@@ -89,11 +96,14 @@
 `diy_header = None `
 
 - 定义状态码,不在其中的均视为请求错误或异常
+
 `status_code = [200, 304, 404]`
 
 - 保存设置
 `host = host`
+
 `port = port`
+
 `database_name = database_name`
 
 ### (2) data_save
@@ -186,7 +196,13 @@ sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_pr
 
 自定义请求头, 当队列数据中未定义的时候从配置文件中获取
 
+**[9] ip** 
+
+代理IP, 当队列数据中未定义的时候从配置文件中获取
+
+
 * 返回:
+
 ` 请求内容, 请求网址`
 
 ### (6)  threads_use_tag
