@@ -30,19 +30,24 @@
 
  请求函数, 必须, 一般就写成[self.downloader.request], 这是框架内默认的请求函数;  也可以自定义函数,但是自定义的函数必须返回请求内容 及url这两个字段内容.
 
-**[follow_func]**
+**[follow_func]** 
+
 当前数据放入队列后, 下一步的处理函数, 当tag为to_get_url的时候必须定义
 
 **[dont _filter]** 
+
  不需要过滤 , 非必须, 布尔型, 默认值为False,  模拟自scrapy.
 
-**[need_save]**
+**[need_save]** 
+
 是否需要保存 , 非必须, 布尔型, 默认为True.
 
-**[save_func]**
+**[save_func]** 
+
 保存函数, 用户自定义.当need_save为真的时候, 必须定义这个函数. 这个函数只能有一个参数,推荐写 response.
 
-**[meta]**
+**[meta]** 
+
 其他想要随着请求进入下一步函数中的数据 ,非必须, 模拟自scrapy.
 
 ## 二  具体模块
@@ -141,28 +146,35 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 * 调用:
 `request(url, dont_filter=False, sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header)`
 
-**[1] url**
+**[1] url** 
+
 请求网址,会对网址的有效性进行检测,从队列数据中获取
 
-**[2] dont_filter**
+**[2] dont_filter** 
+
 不过滤  默认为False 及默认的为过滤掉,从队列数据中获取
 
-**[3] sleep_time**
+**[3] sleep_time** 
+
 请求休息时间, 当队列数据中未定义的时候从配置文件中获取
 
-**[4] timeout**
+**[4] timeout** 
+
 超时时长, 当队列数据中未定义的时候从配置文件中获取
 
-**[5] retry_times**
+**[5] retry_times** 
+
 请求失败重试次数, 当队列数据中未定义的时候从配置文件中获取
 
 **[6] use_proxy**
 是否使用代理, 当队列数据中未定义的时候从配置文件中获取
 
-**[7] ua_type**
+**[7] ua_type** 
+
 请求头种类, 当队列数据中未定义的时候从配置文件中获取
 
-**[8] diy_header**
+**[8] diy_header** 
+
 自定义请求头, 当队列数据中未定义的时候从配置文件中获取
 
 * 返回:
@@ -173,11 +185,13 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 
  * 在本模块中,将请求函数返回的网址及内容分别放入原来取出来的队列中, 键分别为**content** ,**url **. 所以在主程序中 **follow_func** or **save_func**的参数 **只有一个**,推荐写为**response**. 取数据的时候, 采用`response.get()`的方式,如获取请求内容则可以写成`response.get(‘content’)`
  
-**work_queue** 
-	工作队列, 所有需要处理的请求都要在主程序中构造好数据然后放入其中.当定义了save_func的时候, 请求得到的内容与请求网址将被放入数据保存队列中;
+**work_queue**  
+
+工作队列, 所有需要处理的请求都要在主程序中构造好数据然后放入其中.当定义了save_func的时候, 请求得到的内容与请求网址将被放入数据保存队列中;
 当定义了follow_func的时候,将直接执行该函数. 
 
-**save_queue** 
+**save_queue**  
+
  数据保存队列,在save_func中进行数据的获取与保存.
  
 
