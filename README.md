@@ -22,10 +22,12 @@
             
   解析如下：
 
-**[args]**
+**[args]** 
+
  字典格式  键:url为必须 ,  diy_header为用户自定义的header, 一般需要使用特殊header时,可以使用; 还可以定义其他的相关请求参数.如下: sleep_time, time_out, retry_times, use_proxy, ua_type，ip
 
 **[work_func]** 
+
  请求函数, 必须, 一般就写成[self.downloader.request], 这是框架内默认的请求函数;  也可以自定义函数,但是自定义的函数必须返回请求内容 及url这两个字段内容.
 
 **[follow_func]**
