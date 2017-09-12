@@ -61,7 +61,6 @@ class SpiderMain(object):
                 insert_data['singer_mid'] = datas.get('data').get('singer_mid')
                 insert_data['singer_name'] = datas.get('data').get('singer_name')
                 insert_data['total'] = datas.get('data').get('total')
-
                 insert_data['_id'] = da.get('albumID')
 
                 #　保存数入库　
@@ -75,7 +74,6 @@ def go(singer_mids):
     work_queue.join()
 
 if __name__ == '__main__':
-    # singer_mids = get_singer_mid()
-    singer_mids = ['0025NhlN2yWrP4']
 
+    singer_mids = ['0025NhlN2yWrP4']
     go(singer_mids)
