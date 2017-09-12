@@ -148,7 +148,11 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 其中定义了一个aispider单例对象, 采用布隆过滤来进行过滤, 请求采用requests.get方法.
 
 * 调用:
-`request(url, dont_filter=False, sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header)`
+`request(url, dont_filter=False)`
+
+* 其中包括以下字段:
+sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header
+
 
 **[1] url** 
 
