@@ -70,7 +70,6 @@
 - 爬虫名称  
 ` spider_name = 'frame_work_test' `   
 - 日志所在的文件夹名, 可自定义  
-
 `log_folder_name = '%s_logs' % spider_name`  
 `delete_existed_logs = True`  # 是否删除已有日志  
 
@@ -80,29 +79,25 @@
 `retry_times = 10 ` # 最大重试次数   
 `timeout = 5 ` # 请求最大等待时长   
 
-- 当use_proxy为True时，必须在请求的args中或者在配置文件中定义ip, eg: ip="120.52.72.58:80", 否则程序将报错
-`use_proxy = False`
+- 当use_proxy为True时，必须在请求的args中或者在配置文件中定义ip, eg: ip="120.52.72.58:80", 否则程序将报错    
+`use_proxy = False`   
+`ip=None`   
+`ua_type = 'pc' ` # 浏览器头类型, 手机为mobile  
 
-`ip=None`
+- 队列顺序   
+` FIFO=0 ` # FIFO先进先出, LIFO 后进先出   
 
-`ua_type = 'pc' ` # 浏览器头类型, 手机为mobile
+- 自定义浏览器头, 默认提供的浏览器头包括user_agent 和host, 若需要更丰富的header,可自行定定义新的header,并赋值给diy_header, 默认这里为None.    
+`diy_header = None `     
 
-- 队列顺序
-` FIFO=0 ` # FIFO先进先出, LIFO 后进先出
+- 定义状态码,不在其中的均视为请求错误或异常    
 
-- 自定义浏览器头, 默认提供的浏览器头包括user_agent 和host, 若需要更丰富的header,可自行定定义新的header,并赋值给diy_header, 默认这里为None.
-`diy_header = None `
+`status_code = [200, 304, 404]`    
 
-- 定义状态码,不在其中的均视为请求错误或异常
-
-`status_code = [200, 304, 404]`
-
-- 保存设置
-`host = host`
-
-`port = port`
-
-`database_name = database_name`
+- 保存设置    
+`host = host`    
+`port = port`     
+`database_name = database_name`    
 
 ### (2) data_save
 当用户需要将数据保存到MONGODB数据库中的时候,可以使用该模块.
