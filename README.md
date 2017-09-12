@@ -5,8 +5,6 @@
  
 * 该框架部分设计思路继承自**SCRAPY**.
 
-* 欢迎加微信 和我交流
-![扫我](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/webwxgetmsgimg.jpg  "扫我")
 
 ## 一　运行图
 ![运行图](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png   "运行图")
@@ -202,3 +200,6 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 ##    TODOLIST
 * 星期二, 12. 九月 2017 02:44下午 
 ` 保存爬取进度，做到可以断点续爬`# AiSpider
+
+## 欢迎加微信 和我交流
+![扫我](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/webwxgetmsgimg.jpg  "扫我")
