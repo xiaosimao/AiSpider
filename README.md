@@ -74,13 +74,10 @@
 `delete_existed_logs = True`  # 是否删除已有日志
 
 - 请求参数设置
-`thread_num = 10`  # 线程数, 保存线程为工作线程的两倍
-
-`sleep_time = 0.2 `# 请求休息时间
-
-`retry_times = 10 ` # 最大重试次数
-
-`timeout = 5 ` # 请求最大等待时长
+`thread_num = 10`  # 线程数, 保存线程为工作线程的两倍 
+`sleep_time = 0.2 `# 请求休息时间 
+`retry_times = 10 ` # 最大重试次数 
+`timeout = 5 ` # 请求最大等待时长 
 
 - 当use_proxy为True时，必须在请求的args中或者在配置文件中定义ip, eg: ip="120.52.72.58:80", 否则程序将报错
 `use_proxy = False`
