@@ -56,7 +56,7 @@ def get_work_queue():
                     save_func = _dict.get('save_func')
 
                     if follow_func:
-                        follow_func(_dict)
+                        handle_thread_exception(follow_func, _dict)
 
                     if save_func:
                         save_queue.put(_dict)
@@ -73,7 +73,7 @@ def get_save_queue():
         if not save_queue.empty():
             _dict = save_queue.get()
             save_func = _dict.get('save_func')
-            save_func(_dict)
+            handle_thread_exception(save_func, _dict)
 
             save_queue.task_done()
 
@@ -94,6 +94,14 @@ def start(thread_num=thread_num):
     show_size_thread.start()
 
     save_queue.join()
+
+
+def handle_thread_exception(func, _dict):
+    try:
+        func(_dict)
+    except Exception, e:
+        msg = 'ERROR INFO in {func}: {e}'.format(func=func, e=e)
+        logger.error(msg)
 
 
 def show_size():
@@ -164,6 +172,5 @@ def format_put_data(args, work_func, dont_filter=False, follow_func=None, tag=No
         msg = 'IN [put_data], save has to be callable while you define it ,please check, exiting......'
         logger.error(format_error_msg(inspect.stack()[1][1], inspect.stack()[1][3], msg))
         os._exit(0)
-
 
     return put_data

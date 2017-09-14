@@ -67,7 +67,7 @@ class SpiderMain(object):
                 self.pipeline.process_item(insert_data, collection_name)
 
 def go(singer_mids):
-
+    start()
     obj_spider = SpiderMain()
     obj_spider.craw(singer_mids)
     # 这里必须写这个
