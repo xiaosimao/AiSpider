@@ -10,6 +10,8 @@ from UAS import *
 from config import *
 import hashlib
 from pybloom import ScalableBloomFilter
+import os
+
 
 sbf = ScalableBloomFilter(mode=ScalableBloomFilter.SMALL_SET_GROWTH, error_rate=0.000001)
 
@@ -60,7 +62,7 @@ class AiSpider(object):
                 logger.info(msg)
 
         if not url.startswith('http'):
-            raise ValueError('http or https must be in url')
+            raise ValueError('url has to be started with http or https')
         if diy_header:
             header = diy_header
         else:
@@ -95,7 +97,9 @@ class AiSpider(object):
                             raise ValueError('status code not in the code in config.py, check your log')
                         time.sleep(sleep_time)
                     else:
-                        raise ValueError('ip can not be none while use_proxy is True')
+                        msg = 'ip can not be none while use_proxy is True'
+                        self.log.error(msg)
+                        os._exit(0)
 
                 else:
                     con = requests.get(url, headers=header, timeout=time_out)
@@ -126,8 +130,3 @@ class AiSpider(object):
 
 
 aispider = AiSpider()
-
-if __name__ == '__main__':
-    url = 'https://www.baidu.com'
-    aispider = AiSpider()
-    aispider.request(url)
