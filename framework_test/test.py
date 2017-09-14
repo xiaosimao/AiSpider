@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 # Created by shimeng on 17-9-12
 # 导入模块
+
 import sys
 # 这里写你自己的地址
 sys.path.append('/home/shimeng/code/spider_framework_github_responsity')
 
+from spider.tools import format_put_data
 from spider.data_save import pipeline
 from spider.html_parser import parser
 from spider.page_downloader import aispider
-from spider.threads import start, work_queue, format_put_data
+from spider.threads import start, work_queue
 from spider.log_format import logger
 
 
