@@ -9,10 +9,12 @@ import os
 from config import *
 from log_format import logger
 import inspect
+import tools
+
 
 # work_threading count
-work_threading_count = []
-save_threading_count = []
+work_threading_list = []
+save_threading_list = []
 
 # 两种队列  先进先出
 fifo = FIFO
@@ -85,13 +87,13 @@ def get_save_queue():
 def start(thread_num=thread_num):
     for i in range(thread_num):
         get_work_thread = threading.Thread(target=get_work_queue)
-        work_threading_count.append(get_work_thread)
+        work_threading_list.append(get_work_thread)
         get_work_thread.setDaemon(True)
         get_work_thread.start()
 
     for i in range(thread_num * 2):
         get_save_thread = threading.Thread(target=get_save_queue)
-        save_threading_count.append(get_save_thread)
+        save_threading_list.append(get_save_thread)
 
         get_save_thread.setDaemon(True)
         get_save_thread.start()
@@ -120,13 +122,13 @@ def show_size():
             msg = 'AT %s ,save queue size is [%d]' % (time.strftime('%Y-%m-%d %H:%M:%S'), save_queue.qsize())
             logger.info(msg)
 
-            msg = 'work active threading count is [%d]' % (len(work_threading_count))
+            msg = 'work threading total count is [%d], active count is [%d]' % (len(work_threading_list), tools.isThreadAlive(work_threading_list))
             logger.info(msg)
 
-            msg = 'save active threading count is [%d]' % (len(save_threading_count))
+            msg = 'save threading total count is [%d], active count is [%d]' % (len(save_threading_list), tools.isThreadAlive(save_threading_list))
             logger.info(msg)
 
-            time.sleep(5)
+            time.sleep(10)
 
 
 def format_error_msg(file_name, func_name, error_msg):
