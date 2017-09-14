@@ -66,6 +66,7 @@
 * 日志;
 * 请求;
 * 多线程模块;
+* 工具;
 
 ### (1)config.py 
 配置模块, 需要根据实际情况来配置, 该模块名不能变.
@@ -204,6 +205,8 @@ sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_pr
 **save_queue**      
 数据保存队列,在save_func中进行数据的获取与保存.
  
+### (7)tools.py
+常用的工具函数 
 
 ##    TODOLIST
 * 星期二, 12. 九月 2017 02:44下午 
