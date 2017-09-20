@@ -106,7 +106,9 @@
 - 定义状态码,不在其中的均视为请求错误或异常    
 `status_code = [200, 304, 404]`    
 
-- 保存设置    
+- 保存设置
+ 
+`conect = False` # 默认不连接    
 `host = host`    
 `port = port`     
 `database_name = database_name`    
