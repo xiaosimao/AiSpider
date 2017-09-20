@@ -12,9 +12,11 @@ class Pipeline(object):
         self.host = host
         self.port = port
         self.database = database_name
-        self._connect()
+        if connect:
+            self._connect()
 
     def _connect(self):
+
         self.client = pymongo.MongoClient(self.host,self.port)
         self.db = self.client[self.database]
 
