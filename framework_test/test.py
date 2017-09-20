@@ -82,7 +82,7 @@ if __name__ == '__main__':
     singer_mids = ['0025NhlN2yWrP4']
     go(singer_mids)
 
-    # blocking
+    # blocking, 这里必须这么写
     work_queue.join()
     save_queue.join()
     print 'done'
