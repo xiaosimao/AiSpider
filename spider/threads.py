@@ -31,7 +31,6 @@ else:
 def get_work_queue():
     """
     工作队列
-
     """
     while 1:
         if not work_queue.empty():
@@ -72,7 +71,6 @@ def get_work_queue():
 def get_save_queue():
     """
     保存队列
-
     """
     while 1:
         if not save_queue.empty():
@@ -99,8 +97,6 @@ def start(thread_num=thread_num):
     show_size_thread.setDaemon(True)
     show_size_thread.start()
 
-    save_queue.join()
-
 
 def handle_thread_exception(func, _dict):
     try:
@@ -120,11 +116,11 @@ def show_size():
             logger.info(msg)
 
             msg = 'work threading total count is [%d], active count is [%d]' % (
-            len(work_threading_list), tools.isThreadAlive(work_threading_list))
+                len(work_threading_list), tools.isThreadAlive(work_threading_list))
             logger.info(msg)
 
             msg = 'save threading total count is [%d], active count is [%d]' % (
-            len(save_threading_list), tools.isThreadAlive(save_threading_list))
+                len(save_threading_list), tools.isThreadAlive(save_threading_list))
             logger.info(msg)
 
             time.sleep(10)
