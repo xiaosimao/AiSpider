@@ -32,8 +32,11 @@ diy_header = None
 status_code = [200, 304, 404]
 
 # 保存设置
-host = '10.12.8.18'
+
+connect = False
+
+host = 'your mongodb host'
 
 port = 27017
 
-database_name = 'DUI_JIE_DATA'
+database_name = 'your database name'
