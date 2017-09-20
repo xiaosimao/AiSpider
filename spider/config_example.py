@@ -37,8 +37,13 @@ diy_header = None
 status_code = [200, 304, 404]
 
 # 保存设置
-host = '10.12.8.18'
+
+# 默认不连接, 如果在没有配置好host,port的情况下将connect改为True, 则会报错.
+# 待都设置好以后, 可以将connect设为True
+connect = False
+
+host = 'yours'
 
 port = 27017
 
-database_name = 'DUI_JIE_DATA'
+database_name = 'yours'
