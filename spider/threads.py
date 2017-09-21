@@ -123,4 +123,4 @@ def show_size():
                 len(save_threading_list), tools.isThreadAlive(save_threading_list))
             logger.info(msg)
 
-            time.sleep(10)
+            time.sleep(2)
