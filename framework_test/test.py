@@ -13,7 +13,6 @@ from spider.html_parser import parser
 from spider.page_downloader import aispider
 from spider.threads import start, work_queue, save_queue
 from spider.log_format import logger
-import threading
 
 root_url_format = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_album.fcg?g_tk=676629472&loginUin=549411552&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&singermid={singermid}&order=time&begin={begin}&num={num}&exstatus=1'
 
@@ -30,7 +29,8 @@ class SpiderMain(object):
         for singer_mid in singer_mids:
             url = root_url_format.format(singermid=singer_mid, begin=begin, num=num)
             # 调用format_put_data 构造放入队列中的数据 
-            put_data = format_put_data(args={"url": url}, work_func=self.downloader.request,
+            put_data = format_put_data(args={"url": url, 'method': 'get', 'data': None},
+                                       work_func=self.downloader.request,
                                        follow_func=self.get_total_num)
             # 放入队列
             work_queue.put(put_data)
