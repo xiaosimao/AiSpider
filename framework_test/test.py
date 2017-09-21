@@ -29,7 +29,7 @@ class SpiderMain(object):
         for singer_mid in singer_mids:
             url = root_url_format.format(singermid=singer_mid, begin=begin, num=num)
             # 调用format_put_data 构造放入队列中的数据 
-            put_data = format_put_data(args={"url": url, 'method': 'get', 'data': None},
+            put_data = format_put_data(args={"url": url, 'method': 'get', 'submit_data': None},
                                        work_func=self.downloader.request,
                                        follow_func=self.get_total_num)
             # 放入队列
