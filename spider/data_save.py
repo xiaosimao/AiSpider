@@ -6,6 +6,7 @@ import pymongo
 from config import *
 from log_format import logger
 
+
 class Pipeline(object):
 
     def __init__(self):
