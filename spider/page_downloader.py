@@ -30,7 +30,7 @@ class AiSpider(object):
         self.retry_times = retry_times
         self.ip = ip
         self.method = 'get'
-        self.post_data = None
+        self.submit_data = None
 
     def md5_url(self, url):
 
@@ -56,7 +56,7 @@ class AiSpider(object):
         ua_type = _args.get('ua_type') if _args.get('ua_type') else self.ua_type
         diy_header = _args.get('diy_header') if _args.get('diy_header') else self.diy_header
         method = _args.get('method') if _args.get('method') else self.method
-        post_data = _args.get('data') if _args.get('data') else self.post_data
+        post_data = _args.get('submit_data') if _args.get('submit_data') else self.submit_data
 
         if not dont_filter:
             check_result = self.check(url)
