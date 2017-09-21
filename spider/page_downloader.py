@@ -12,6 +12,7 @@ import hashlib
 from pybloom import ScalableBloomFilter
 import os
 
+request = requests.Session()
 
 sbf = ScalableBloomFilter(mode=ScalableBloomFilter.SMALL_SET_GROWTH, error_rate=0.000001)
 
@@ -28,6 +29,8 @@ class AiSpider(object):
         self.diy_header = diy_header
         self.retry_times = retry_times
         self.ip = ip
+        self.method = 'get'
+        self.post_data = None
 
     def md5_url(self, url):
 
@@ -52,6 +55,8 @@ class AiSpider(object):
         _ip = _args.get('ip') if _args.get('ip') else self.ip
         ua_type = _args.get('ua_type') if _args.get('ua_type') else self.ua_type
         diy_header = _args.get('diy_header') if _args.get('diy_header') else self.diy_header
+        method = _args.get('method') if _args.get('method') else self.method
+        post_data = _args.get('data') if _args.get('data') else self.post_data
 
         if not dont_filter:
             check_result = self.check(url)
@@ -91,7 +96,14 @@ class AiSpider(object):
                             'http': 'http://%s' % ip,
                             'https': 'http://%s' % ip
                         }
-                        con = requests.get(url, headers=header, proxies=proxy, timeout=time_out)
+                        if method == 'get':
+                            con = request.get(url, headers=header, proxies=proxy, timeout=time_out, params=post_data, verify=False)
+                        elif method == 'post':
+                            if post_data and isinstance(post_data, dict):
+                                con = request.post(url, headers=header, proxies=proxy, timeout=time_out, data=post_data, verify=False)
+                            else:
+                                self.log.error('while method is post, post_data must be defined and defined as dict')
+
                         if con.status_code not in self.status_code:
                             self.log.error('status code is %s' % con.status_code)
                             raise ValueError('status code not in the code in config.py, check your log')
@@ -102,7 +114,15 @@ class AiSpider(object):
                         os._exit(0)
 
                 else:
-                    con = requests.get(url, headers=header, timeout=time_out)
+                    if method == 'get':
+                        con = request.get(url, headers=header, timeout=time_out, params=post_data, verify=False)
+                    elif method == 'post':
+                        if post_data and isinstance(post_data, dict):
+                            con = request.post(url, headers=header, timeout=time_out, data=post_data, verify=False)
+                        else:
+                            self.log.error('while method is post, post_data must be defined and defined as dict')
+                            os._exit(0)
+
                     if con.status_code not in self.status_code:
                         self.log.error('status code is %s' % con.status_code)
                         raise ValueError('status code not in the code in config.py, check your log')
