@@ -168,7 +168,7 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 `request(_args, dont_filter=False)`     
 
 * 其中_args包括以下字段:     
-sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header     
+url=url, sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header     
 method=method, submit_data=submit_data
 
 **[1] url**      
