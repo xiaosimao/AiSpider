@@ -162,14 +162,14 @@ file_folder  文件夹名, 取配置中的 log_folder_name
 delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 delete_existed_logs     
 
 ### (5) page_downloader
-其中定义了一个aispider单例对象, 采用布隆过滤来进行过滤, 请求采用requests.get方法.     
+其中定义了一个aispider单例对象, 采用布隆过滤来进行过滤, 请求采用requests.get 和 requests.post方法.     
 
 * 调用:     
-`request(url, dont_filter=False)`     
+`request(_args, dont_filter=False)`     
 
-* 其中包括以下字段:     
+* 其中_args包括以下字段:     
 sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header     
-method=method, post_data=post_data
+method=method, submit_data=submit_data
 
 **[1] url**      
 请求网址,会对网址的有效性进行检测,从队列数据中获取
@@ -201,8 +201,8 @@ method=method, post_data=post_data
 **[10] method**      
 请求方法,默认设置为get, 若需要定义为post, 则设置method=post即可,     
 
-**[11] post_data**      
-post_data, 请求过程中需要提交的数据, 当方法为post的时候, post_data必须为字典格式, 严格按照requests库的要去, 否则会直接报错,退出程序
+**[11] submit_data**      
+submit_data, 请求过程中需要提交的数据, 当方法为post的时候, submit_data必须为字典格式, 严格按照requests库的要去, 否则会直接报错,退出程序
 
 * 返回:
 
