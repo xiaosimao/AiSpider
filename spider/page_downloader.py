@@ -12,7 +12,7 @@ import hashlib
 from pybloom import ScalableBloomFilter
 import os
 
-request = requests.Session()
+request_session = requests.Session()
 
 sbf = ScalableBloomFilter(mode=ScalableBloomFilter.SMALL_SET_GROWTH, error_rate=0.000001)
 
@@ -97,10 +97,10 @@ class AiSpider(object):
                             'https': 'http://%s' % ip
                         }
                         if method == 'get':
-                            con = request.get(url, headers=header, proxies=proxy, timeout=time_out, params=post_data, verify=False)
+                            con = request_session.get(url, headers=header, proxies=proxy, timeout=time_out, params=post_data, verify=False)
                         elif method == 'post':
                             if post_data and isinstance(post_data, dict):
-                                con = request.post(url, headers=header, proxies=proxy, timeout=time_out, data=post_data, verify=False)
+                                con = request_session.post(url, headers=header, proxies=proxy, timeout=time_out, data=post_data, verify=False)
                             else:
                                 self.log.error('while method is post, post_data must be defined and defined as dict')
 
@@ -115,10 +115,10 @@ class AiSpider(object):
 
                 else:
                     if method == 'get':
-                        con = request.get(url, headers=header, timeout=time_out, params=post_data, verify=False)
+                        con = request_session.get(url, headers=header, timeout=time_out, params=post_data, verify=False)
                     elif method == 'post':
                         if post_data and isinstance(post_data, dict):
-                            con = request.post(url, headers=header, timeout=time_out, data=post_data, verify=False)
+                            con = request_session.post(url, headers=header, timeout=time_out, data=post_data, verify=False)
                         else:
                             self.log.error('while method is post, post_data must be defined and defined as dict')
                             os._exit(0)
