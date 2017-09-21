@@ -169,7 +169,7 @@ delete_existed_log  是否删除已经存在的日志文件夹, 取配置中的 
 
 * 其中包括以下字段:     
 sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_proxy,ua_type=ua_type, diy_header=diy_header     
-
+method=method, post_data=post_data
 
 **[1] url**      
 请求网址,会对网址的有效性进行检测,从队列数据中获取
@@ -198,6 +198,11 @@ sleep_time=sleep_time, timeout=timeout, retry_times=retry_times,use_proxy=use_pr
 **[9] ip**      
 代理IP, 当队列数据中未定义的时候从配置文件中获取
 
+**[10] method**      
+请求方法,默认设置为get, 若需要定义为post, 则设置method=post即可,     
+
+**[11] post_data**      
+post_data, 请求过程中需要提交的数据, 当方法为post的时候, post_data必须为字典格式, 严格按照requests库的要去, 否则会直接报错,退出程序
 
 * 返回:
 
