@@ -24,7 +24,7 @@
 * 在此感谢姜某坤, 许某杨 不打扰之恩, 哈哈.
 
 ## 一　运行图
-![运行图](http://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png   "运行图")
+![运行图](https://qiniu.cuiqingcai.com/wp-content/uploads/2017/09/流程图2.png   "运行图")
 
 
 - 主程序中首先**构造特定格式的带着url**放入**工作队列**,作为**root_url**, 特定格式如下:
