@@ -1,6 +1,6 @@
 # 爬虫框架AISPIDER
 # 个人公众号
-![截图](https://qiniu.cuiqingcai.com/wp-content/uploads/2018/02/201802111155445124jhQyer.yasuotu.gif)
+![截图](https://github.com/xiaosimao/IP_POOL/raw/master/%E4%B8%AA%E4%BA%BA%E5%85%AC%E4%BC%97%E5%8F%B7.gif)
 
 # 环境:python2.7
 ## 首先申明: 该框架并没有什么黑科技,只是将写爬虫脚本过程中的几个常用步骤封装了起来.比如请求, 请求异常处理, 去重, 源代码解析, 数据保存等, 主要的爬虫逻辑还是需要自行编写.
